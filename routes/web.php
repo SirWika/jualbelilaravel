@@ -67,3 +67,66 @@ Route::get('/cetaktransaksi', [DetailController::class, 'cetaktransaksi']);
 Route::get('/login',[LoginController::class,'login'])->name('login');
 Route::post('/authlogin',[LoginController::class,'authlogin'])->name('authlogin');;
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+use App\Http\Controllers\indexcontroller;
+
+Route::get('/index', [indexcontroller::class, 'index']);
+Route::get('/index/{id}', [indexcontroller::class, 'show']);
+
+use App\Http\Controllers\shirtcontroller;
+
+Route::get('/shirt', [shirtcontroller::class, 'index']);
+Route::get('/shirt/{id}', [shirtcontroller::class, 'show']);
+
+Route::get('/detail', [shirtcontroller::class, 'anotherPage']);
+Route::get('/detail/{id}', [shirtcontroller::class, 'show']);
+
+Route::get('/detail1', [shirtcontroller::class, 'anotherPage1']);
+Route::get('/detail1/{id}', [shirtcontroller::class, 'show']);
+
+Route::get('/detail2', [shirtcontroller::class, 'anotherPage2']);
+Route::get('/detail2/{id}', [shirtcontroller::class, 'show']);
+
+Route::get('/detail3', [shirtcontroller::class, 'anotherPage3']);
+Route::get('/detail3/{id}', [shirtcontroller::class, 'show']);
+
+Route::get('/detail4', [shirtcontroller::class, 'anotherPage4']);
+Route::get('/detail4/{id}', [shirtcontroller::class, 'show']);
+
+Route::get('/detail5', [shirtcontroller::class, 'anotherPage5']);
+Route::get('/detail5/{id}', [shirtcontroller::class, 'show']);
+
+Route::get('/detail6', [shirtcontroller::class, 'anotherPage6']);
+Route::get('/detail6/{id}', [shirtcontroller::class, 'show']);
+
+Route::get('/detail7', [shirtcontroller::class, 'anotherPage7']);
+Route::get('/detail7/{id}', [shirtcontroller::class, 'show']);
+
+use App\Http\Controllers\shopcontroller;
+
+Route::get('/shop', [shopcontroller::class, 'index']);
+Route::get('/shop/{id}', [shopcontroller::class, 'show']);
+
+Route::get('/contact', function () {
+    return view('landing.contact');
+});
+
+Route::get('/loginuser', function () {
+    return view('dashboard.user.login');
+});
+
+Route::get('/cart', function () {
+    return view('dashboard.user.cart');
+});
+Route::get('/checkout', function () {
+    return view('dashboard.user.checkout');
+});
+
+Route::post('/add-to-cart', [OrderController::class, 'insertorder'])->name('insertorder');
+
+use App\Http\Controllers\authcontroller;
+Route::get('/loginuser',[authcontroller::class,'login'])->name('loginuser');
+Route::post('/authuser',[authcontroller::class,'authlogin'])->name('authlogin');;
+Route::post('/logout1', [authcontroller::class, 'logout1'])->name('logout1');
+
+route::post('/data-order','CartController@index')->name('data-order');

@@ -21,9 +21,24 @@ class PelangganController extends Controller
 
     public function insertpelanggan(Request $request)
     {
-        Pelanggan::create($request->all());
-        return redirect()->route('pelanggan')->with('success','Data Berhasil Ditambahkan');
+        $validatedData = $request->validate([
+            'id_user' => 'required',
+            'username' => 'required',
+            'nama' => 'required',
+            'telp' => 'required',
+            'alamat' => 'required', // Sesuaikan dengan jenis data alamat yang benar
+            'jenkel' => 'required',
+            'tanggal_lahir' => 'required',
+            'password' => 'required', // Tambahkan aturan validasi password jika dibutuhkan
+        ]);
+    
+        $validatedData['password'] = bcrypt($validatedData['password']);
+    
+        Pelanggan::create($validatedData);
+    
+        return redirect()->route('pelanggan')->with('success', 'Data Berhasil Ditambahkan');
     }
+    
 
     public function tampildata($id_user)
     {

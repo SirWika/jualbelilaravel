@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 
-class Pelanggan extends Model
+class Pelanggan extends Authenticatable
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
+
     protected $table = 'pelanggans';
     protected $primaryKey = 'id_user';
 
@@ -20,6 +24,9 @@ class Pelanggan extends Model
         'alamat',
         'jenkel',
         'tanggal_lahir',
+    ];
+    protected $hidden = [
+        'password',
     ];
 
     public function order(){
